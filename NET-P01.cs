@@ -113,4 +113,35 @@ class Problema07
     }
 }
 
+//topico 08
+
+using System;
+
+class Problema08
+{
+    static void Main()
+    {
+        // Variáveis
+        int num1 = 7;
+        int num2 = 3;
+        int num3 = 10;
+
+        // Verificar se num1 é maior do que num2
+        bool condicao1 = num1 > num2;
+
+        // Verificar se num3 é igual a num1 + num2
+        bool condicao2 = num3 == (num1 + num2);
+
+        // Exibir o resultado
+        if (condicao1 && condicao2)
+        {
+            Console.WriteLine("num1 é maior do que num2 e num3 é igual a num1 + num2.");
+        }
+        else
+        {
+            Console.WriteLine("As condições não são ambas verdadeiras.");
+        }
+    }
+}
+
 
