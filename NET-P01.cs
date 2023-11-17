@@ -1,4 +1,5 @@
 using System;
+//os topicos 01 e 02 são discorridos ao serem feitos os topicos 03 ao 08.
 //topico 03
 class Problema03
 {
