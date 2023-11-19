@@ -33,3 +33,63 @@ class GerenciadorTarefas
     }
 
 }
+    private static void ExibirMenu()
+    {
+        Console.WriteLine("Escolha uma opção:");
+        Console.WriteLine("1 - Adicionar Tarefa");
+        Console.WriteLine("2 - Exibir Tarefas");
+        Console.WriteLine("3 - Marcar Tarefa como Concluída");
+        Console.WriteLine("4 - Exibir Tarefas Pendentes");
+        Console.WriteLine("5 - Exibir Tarefas Concluídas");
+        Console.WriteLine("6 - Excluir Tarefa");
+        Console.WriteLine("7 - Pesquisar Tarefa por Palavra-Chave");
+        Console.WriteLine("8 - Exibir Estatísticas");
+        Console.WriteLine("9 - Sair");
+    }
+
+    private static void ProcessarOpcao(int opcao)
+    {
+        switch (opcao)
+        {
+            case 1:
+                AdicionarTarefa();
+                break;
+            case 2:
+                ExibirTarefas();
+                break;
+            case 3:
+                MarcarComoConcluida();
+                break;
+            case 4:
+                ExibirTarefasPendentes();
+                break;
+            case 5:
+                ExibirTarefasConcluidas();
+                break;
+            case 6:
+                ExcluirTarefa();
+                break;
+            case 7:
+                PesquisarTarefasPorPalavraChave();
+                break;
+            case 8:
+                ExibirEstatisticas();
+                break;
+            case 9:
+                Console.WriteLine("Encerrando o Gerenciador de Tarefas. Adeus!");
+                Environment.Exit(0);
+                break;
+            default:
+                Console.WriteLine("Opção inválida! Por favor, digite um número válido.");
+                break;
+        }
+    }
+
+    private static void AdicionarTarefa()
+    {}
+
+    private static void ExibirTarefas()
+    {
+    }
+
+
