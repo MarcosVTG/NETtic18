@@ -20,3 +20,12 @@ class Program
 
         ConsultarProdutosComPrecoSuperiorA(estoque, 2.0);
     }
+static List<(string Codigo, string Nome, int Quantidade, double Preco)> InicializarEstoque()
+    {
+        return new List<(string, string, int, double)>
+        {
+            ("P001", "Notebook", 10, 2500.0),
+            ("P002", "Smartphone", 15, 1200.0),
+            ("P003", "Mouse", 30, 25.0)
+        };
+    }
