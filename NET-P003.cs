@@ -11,24 +11,39 @@ class Program
         Console.WriteLine("Estoque atual:");
         ImprimirEstoque(estoque);
 
-        AdicionarProduto(estoque, new Produto("P003", "Caneta", 50, 1.5));
-        AtualizarQuantidade(estoque, "P001", 20);
-        RemoverProduto(estoque, "P002");
+        Console.Write("\nInforme o código do produto a ser adicionado: ");
+        string codigo = Console.ReadLine();
+        Console.Write("Informe o nome do produto: ");
+        string nome = Console.ReadLine();
+        Console.Write("Informe a quantidade do produto: ");
+        int quantidade = int.Parse(Console.ReadLine());
+        Console.Write("Informe o preço do produto: ");
+        double preco = double.Parse(Console.ReadLine());
+
+        AdicionarProduto(estoque, new Produto(codigo, nome, quantidade, preco));
+
+        Console.Write("\nInforme o código do produto a ter a quantidade atualizada: ");
+        string codigoAtualizar = Console.ReadLine();
+        Console.Write("Informe a nova quantidade do produto: ");
+        int novaQuantidade = int.Parse(Console.ReadLine());
+
+        AtualizarQuantidade(estoque, codigoAtualizar, novaQuantidade);
+
+        Console.Write("\nInforme o código do produto a ser removido: ");
+        string codigoRemover = Console.ReadLine();
+        RemoverProduto(estoque, codigoRemover);
 
         Console.WriteLine("\nEstoque após as operações:");
         ImprimirEstoque(estoque);
 
-        ConsultarProdutosComPrecoSuperiorA(estoque, 2.0);
+        Console.Write("\nInforme o valor limite para consultar produtos com preço superior a: ");
+        double valorLimiteConsulta = double.Parse(Console.ReadLine());
+        ConsultarProdutosComPrecoSuperiorA(estoque, valorLimiteConsulta);
     }
 
     static List<Produto> InicializarEstoque()
     {
-        return new List<Produto>
-        {
-            new Produto("P001", "Notebook", 10, 2500.0),
-            new Produto("P002", "Smartphone", 15, 1200.0),
-            new Produto("P003", "Mouse", 30, 25.0)
-        };
+        return new List<Produto>();
     }
 
     static void ImprimirEstoque(IEnumerable<Produto> estoque)
@@ -98,6 +113,6 @@ class Produto
 
     public override string ToString()
     {
-        return $"Código: {Codigo}, Nome: {Nome}, Quantidade: {Quantidade}, Preço: {Preco}";
+        return $"Código: {Codigo}, Nome: {Nome}, Quantidade: {Quantidade}, Preço: {Preco:C}";
     }
 }
