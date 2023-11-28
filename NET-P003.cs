@@ -81,3 +81,23 @@ static List<(string Codigo, string Nome, int Quantidade, double Preco)> Iniciali
         ImprimirEstoque(produtosFiltrados.ToList());
     }
 }
+static (string Codigo, string Nome, int Quantidade, double Preco) BuscarProdutoPorCodigo(List<(string Codigo, string Nome, int Quantidade, double Preco)> estoque, string codigoDesejado)
+    {
+        var produto = estoque.FirstOrDefault(p => p.Codigo == codigoDesejado);
+        if (produto != default)
+        {
+            return produto;
+        }
+        else
+        {
+            throw new ProdutoNaoEncontradoException($"Produto com código '{codigoDesejado}' não encontrado.");
+        }
+    }
+}
+
+class ProdutoNaoEncontradoException : Exception
+{
+    public ProdutoNaoEncontradoException(string message) : base(message)
+    {
+    }
+}
