@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 class Pessoa
 {
@@ -21,16 +22,17 @@ class Pessoa
     }
 }
 
-class Médico : Pessoa
+class Medico : Pessoa
 {
     public string CRM { get; set; }
 
-    public Médico(string nome, DateTime dataNascimento, string cpf, string crm)
+    public Medico(string nome, DateTime dataNascimento, string cpf, string crm)
         : base(nome, dataNascimento, cpf)
     {
         CRM = ValidarCRMUnico(crm);
     }
-private string ValidarCRMUnico(string crm)
+
+    private string ValidarCRMUnico(string crm)
     {
         return crm;
     }
@@ -48,6 +50,7 @@ class Paciente : Pessoa
         Sintomas = sintomas;
     }
 }
+
 class Consulta
 {
     public DateTime DataConsulta { get; set; }
@@ -95,7 +98,8 @@ class Consultorio
             Console.WriteLine($"Erro: CPF {paciente.CPF} ja esta em uso.");
         }
     }
-public void RelatorioMedicosIdadeEntre(int idadeMinima, int idadeMaxima)
+
+    public void RelatorioMedicosIdadeEntre(int idadeMinima, int idadeMaxima)
     {
         var medicosFiltrados = medicos.Where(m => CalcularIdade(m.DataNascimento) >= idadeMinima && CalcularIdade(m.DataNascimento) <= idadeMaxima);
         ExibirLista("Medicos com idade entre " + idadeMinima + " e " + idadeMaxima + " anos", medicosFiltrados.Cast<Pessoa>());
@@ -130,7 +134,8 @@ public void RelatorioMedicosIdadeEntre(int idadeMinima, int idadeMaxima)
         var aniversariantes = medicos.Cast<Pessoa>().Concat(pacientes.Cast<Pessoa>()).Where(p => p.DataNascimento.Month == mes);
         ExibirLista("Aniversariantes do mes " + mes, aniversariantes);
     }
-private int CalcularIdade(DateTime dataNascimento)
+
+    private int CalcularIdade(DateTime dataNascimento)
     {
         DateTime dataAtual = DateTime.Now;
         int idade = dataAtual.Year - dataNascimento.Year;
@@ -158,9 +163,6 @@ private int CalcularIdade(DateTime dataNascimento)
     private bool PacienteCPFUnico(string cpf)
     {
         return !pacientes.Any(p => p.CPF == cpf);
-    }
-}
-
     }
 }
 
@@ -193,4 +195,3 @@ class Program
         consultorio.RelatorioAniversariantesDoMes(8);
     }
 }
-
