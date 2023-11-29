@@ -130,7 +130,36 @@ public void RelatorioMedicosIdadeEntre(int idadeMinima, int idadeMaxima)
         var aniversariantes = medicos.Cast<Pessoa>().Concat(pacientes.Cast<Pessoa>()).Where(p => p.DataNascimento.Month == mes);
         ExibirLista("Aniversariantes do mes " + mes, aniversariantes);
     }
+private int CalcularIdade(DateTime dataNascimento)
+    {
+        DateTime dataAtual = DateTime.Now;
+        int idade = dataAtual.Year - dataNascimento.Year;
+        if (dataNascimento > dataAtual.AddYears(-idade))
+            idade--;
 
+        return idade;
+    }
+
+    private void ExibirLista(string titulo, IEnumerable<Pessoa> pessoas)
+    {
+        Console.WriteLine($"\n--- {titulo} ---");
+        foreach (var pessoa in pessoas)
+        {
+            Console.WriteLine($"Nome: {pessoa.Nome}, Idade: {CalcularIdade(pessoa.DataNascimento)} anos");
+        }
+        Console.WriteLine();
+    }
+
+    private bool MedicoCRMUnico(string crm)
+    {
+        return !medicos.Any(m => m.CRM == crm);
+    }
+
+    private bool PacienteCPFUnico(string cpf)
+    {
+        return !pacientes.Any(p => p.CPF == cpf);
+    }
+}
 
     }
 }
