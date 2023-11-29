@@ -95,7 +95,41 @@ class Consultorio
             Console.WriteLine($"Erro: CPF {paciente.CPF} ja esta em uso.");
         }
     }
+public void RelatorioMedicosIdadeEntre(int idadeMinima, int idadeMaxima)
+    {
+        var medicosFiltrados = medicos.Where(m => CalcularIdade(m.DataNascimento) >= idadeMinima && CalcularIdade(m.DataNascimento) <= idadeMaxima);
+        ExibirLista("Medicos com idade entre " + idadeMinima + " e " + idadeMaxima + " anos", medicosFiltrados.Cast<Pessoa>());
+    }
 
+    public void RelatorioPacientesIdadeEntre(int idadeMinima, int idadeMaxima)
+    {
+        var pacientesFiltrados = pacientes.Where(p => CalcularIdade(p.DataNascimento) >= idadeMinima && CalcularIdade(p.DataNascimento) <= idadeMaxima);
+        ExibirLista("Pacientes com idade entre " + idadeMinima + " e " + idadeMaxima + " anos", pacientesFiltrados.Cast<Pessoa>());
+    }
+
+    public void RelatorioPacientesPorSexo(string sexo)
+    {
+        var pacientesFiltrados = pacientes.Where(p => p.Sexo.ToLower() == sexo.ToLower());
+        ExibirLista("Pacientes do sexo " + sexo, pacientesFiltrados.Cast<Pessoa>());
+    }
+
+    public void RelatorioPacientesOrdemAlfabetica()
+    {
+        var pacientesOrdenados = pacientes.OrderBy(p => p.Nome);
+        ExibirLista("Pacientes em ordem alfabetica", pacientesOrdenados.Cast<Pessoa>());
+    }
+
+    public void RelatorioPacientesPorSintomas(string textoSintomas)
+    {
+        var pacientesFiltrados = pacientes.Where(p => p.Sintomas.ToLower().Contains(textoSintomas.ToLower()));
+        ExibirLista("Pacientes cujos sintomas contenham '" + textoSintomas + "'", pacientesFiltrados.Cast<Pessoa>());
+    }
+
+    public void RelatorioAniversariantesDoMes(int mes)
+    {
+        var aniversariantes = medicos.Cast<Pessoa>().Concat(pacientes.Cast<Pessoa>()).Where(p => p.DataNascimento.Month == mes);
+        ExibirLista("Aniversariantes do mes " + mes, aniversariantes);
+    }
 
 
     }
