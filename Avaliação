@@ -13,3 +13,26 @@ class Pessoa
         DataNascimento = dataNascimento;
         CPF = ValidarFormatarCPF(cpf);
     }
+
+    private string ValidarFormatarCPF(string cpf)
+    {
+
+        return cpf;
+    }
+}
+
+class Médico : Pessoa
+{
+    public string CRM { get; set; }
+
+    public Médico(string nome, DateTime dataNascimento, string cpf, string crm)
+        : base(nome, dataNascimento, cpf)
+    {
+        CRM = ValidarCRMUnico(crm);
+    }
+
+    private string ValidarCRMUnico(string crm)
+    {
+        return crm;
+    }
+}
