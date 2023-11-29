@@ -48,6 +48,42 @@ class Paciente : Pessoa
         Sintomas = sintomas;
     }
 }
+class Consulta
+{
+    public DateTime DataConsulta { get; set; }
+    public Medico MedicoResponsavel { get; set; }
+    public Paciente PacienteAtendido { get; set; }
+    public string Diagnostico { get; set; }
+
+    public Consulta(DateTime dataConsulta, Medico medicoResponsavel, Paciente pacienteAtendido, string diagnostico)
+    {
+        DataConsulta = dataConsulta;
+        MedicoResponsavel = medicoResponsavel;
+        PacienteAtendido = pacienteAtendido;
+        Diagnostico = diagnostico;
+    }
+}
+
+class Consultorio
+{
+    private List<Medico> medicos = new List<Medico>();
+    private List<Paciente> pacientes = new List<Paciente>();
+    private List<Consulta> consultas = new List<Consulta>();
+
+    public void AdicionarMedico(Medico medico)
+    {
+        if (MedicoCRMUnico(medico.CRM))
+        {
+            medicos.Add(medico);
+            Console.WriteLine($"Medico {medico.Nome} adicionado com sucesso.");
+        }
+        else
+        {
+            Console.WriteLine($"Erro: CRM {medico.CRM} ja esta em uso.");
+        }
+    }
+
+
 
     }
 }
