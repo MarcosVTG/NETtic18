@@ -83,6 +83,19 @@ class Consultorio
         }
     }
 
+    public void AdicionarPaciente(Paciente paciente)
+    {
+        if (PacienteCPFUnico(paciente.CPF))
+        {
+            pacientes.Add(paciente);
+            Console.WriteLine($"Paciente {paciente.Nome} adicionado com sucesso.");
+        }
+        else
+        {
+            Console.WriteLine($"Erro: CPF {paciente.CPF} ja esta em uso.");
+        }
+    }
+
 
 
     }
