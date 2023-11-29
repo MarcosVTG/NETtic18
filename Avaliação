@@ -30,9 +30,24 @@ class Médico : Pessoa
     {
         CRM = ValidarCRMUnico(crm);
     }
-
-    private string ValidarCRMUnico(string crm)
+private string ValidarCRMUnico(string crm)
     {
         return crm;
+    }
+}
+
+class Paciente : Pessoa
+{
+    public string Sexo { get; set; }
+    public string Sintomas { get; set; }
+
+    public Paciente(string nome, DateTime dataNascimento, string cpf, string sexo, string sintomas)
+        : base(nome, dataNascimento, cpf)
+    {
+        Sexo = sexo;
+        Sintomas = sintomas;
+    }
+}
+
     }
 }
